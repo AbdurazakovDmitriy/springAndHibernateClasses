@@ -1,0 +1,18 @@
+{
+  "name": "lenovo",
+  "characteristics": {
+    "display": "17",
+    "core": "Intel Core i5",
+    "ram": "16ГБ",
+    "hdd": "1280 ГБ",
+    "ssd": "256ГБ",
+    "graphics_card": "NVIDIA GeForce RTX 2060"
+  },
+  "imagePath": "src/main/resources/images/lenovo_legion.jpg",
+  "categories": [
+    {
+      "name": "laptop",
+      "status": "DELETED"
+    }
+  ]
+}

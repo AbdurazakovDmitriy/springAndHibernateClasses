@@ -1,0 +1,16 @@
+{
+  "name": "smartphone",
+  "status": "DELETED",
+  "products": [
+    {
+      "name": "Samsung",
+      "characteristics": {
+        "os": "android",
+        "display": "5.0",
+        "ram": "8ГБ",
+        "hdd": "256ГБ"
+      },
+      "imagePath": "src/main/resources/images/samsung.jpg"
+    }
+  ]
+}
