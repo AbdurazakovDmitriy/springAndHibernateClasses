@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.messagesource;
+package com.dmitriyabdurazakov.springboot.configs;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,4 @@ public class LocalValidator {
         bean.setValidationMessageSource(messageSource);
         return bean;
     }
-
-
 }

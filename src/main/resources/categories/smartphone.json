@@ -1,7 +1,7 @@
 {
   "name": "smartphone",
   "status": "DELETED",
-  "products": [
+  "productsDto": [
     {
       "name": "Samsung",
       "characteristics": {
@@ -10,7 +10,8 @@
         "ram": "8ГБ",
         "hdd": "256ГБ"
       },
-      "imagePath": "src/main/resources/images/samsung.jpg"
+      "imagePath": "src/main/resources/images/samsung.jpg",
+      "categories_id": [2]
     }
   ]
 }

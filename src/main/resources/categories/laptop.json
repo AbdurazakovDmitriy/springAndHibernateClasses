@@ -1,7 +1,7 @@
 {
   "name": "laptop",
   "status": "ACTIVE",
-  "products": [
+  "productsDto": [
     {
       "name": "acer",
       "characteristics": {
@@ -12,7 +12,8 @@
         "ssd": "256ГБ",
         "graphics_card": "NVIDIA GeForce RTX 1060"
       },
-      "imagePath": "src/main/resources/images/predator_helios_300.jpg"
+      "imagePath": "src/main/resources/images/predator_helios_300.jpg",
+      "categories_id": [1]
     }
   ]
 }

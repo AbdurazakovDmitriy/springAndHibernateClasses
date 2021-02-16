@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.messagesource;
+package com.dmitriyabdurazakov.springboot.configs;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -16,5 +16,4 @@ public class MyMessagesSource {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-
 }

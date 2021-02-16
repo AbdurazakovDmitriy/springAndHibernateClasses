@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.utils;
+package com.dmitriyabdurazakov.springboot.parsers;
 
 import com.dmitriyabdurazakov.springboot.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;

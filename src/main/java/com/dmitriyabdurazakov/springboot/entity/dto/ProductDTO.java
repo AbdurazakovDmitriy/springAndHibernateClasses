@@ -1,6 +1,5 @@
 package com.dmitriyabdurazakov.springboot.entity.dto;
 
-import com.dmitriyabdurazakov.springboot.entity.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +13,5 @@ public class ProductDTO {
     private String name;
     private Map<String, String> characteristics;
     private String imagePath;
-    private List<Category> categories = new ArrayList<>();
+    private List<Long> categories_id = new ArrayList<>();
 }

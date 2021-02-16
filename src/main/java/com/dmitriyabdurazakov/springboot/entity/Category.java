@@ -26,6 +26,11 @@ public class Category {
     @Column(nullable = false)
     private CategoryStatus status;
 
-    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "product_category",
+        inverseJoinColumns = @JoinColumn(name = "product_id"),
+        joinColumns = @JoinColumn(name = "category_id")
+    )
     private List<Product> products = new ArrayList<>();
 }

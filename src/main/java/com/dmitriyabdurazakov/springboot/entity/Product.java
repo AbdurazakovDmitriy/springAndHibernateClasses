@@ -34,11 +34,6 @@ public class Product {
     @Column(nullable = false)
     private byte[] image;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(
-        name = "product_category",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 }
