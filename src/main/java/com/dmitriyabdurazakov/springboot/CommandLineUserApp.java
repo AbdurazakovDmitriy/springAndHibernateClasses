@@ -1,12 +1,11 @@
 package com.dmitriyabdurazakov.springboot;
 
 
-import com.dmitriyabdurazakov.springboot.entity.Category;
-import com.dmitriyabdurazakov.springboot.entity.Product;
-import com.dmitriyabdurazakov.springboot.parsers.CategoryParser;
-import com.dmitriyabdurazakov.springboot.parsers.ProductParser;
-import com.dmitriyabdurazakov.springboot.service.CategoryService;
-import com.dmitriyabdurazakov.springboot.service.ProductService;
+import com.dmitriyabdurazakov.springboot.categories.entity.Category;
+import com.dmitriyabdurazakov.springboot.categories.parsers.CategoryParser;
+import com.dmitriyabdurazakov.springboot.products.parsers.ProductParser;
+import com.dmitriyabdurazakov.springboot.categories.service.CategoryService;
+import com.dmitriyabdurazakov.springboot.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -35,9 +34,11 @@ public class CommandLineUserApp implements CommandLineRunner {
         List<Category> categoryList = categoryParser.getCategories(categoriesFiles);
         categoryService.saveAll(categoryList);
 
-        List<Product> productList = productParser.getProductList(productsFiles);
-        productService.saveAll(productList);
+//        List<Product> productList = productParser.getProductList(productsFiles);
+//        productService.saveAll(productList);
 //        List<Product> productList = productService.findAll();
 //        System.out.println(productList);
+
+
     }
 }
