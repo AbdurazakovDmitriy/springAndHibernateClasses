@@ -10,8 +10,7 @@
         "ram": "8ГБ",
         "hdd": "256ГБ"
       },
-      "imagePath": "src/main/resources/images/samsung.jpg",
-      "categories_id": [2]
+      "imagePath": "src/main/resources/images/samsung.jpg"
     }
   ]
 }

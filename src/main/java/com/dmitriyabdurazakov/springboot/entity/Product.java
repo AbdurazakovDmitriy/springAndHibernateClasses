@@ -7,10 +7,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "product")
@@ -34,6 +31,16 @@ public class Product {
     @Column(nullable = false)
     private byte[] image;
 
-    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
-    private List<Category> categories = new ArrayList<>();
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Category> categories = new HashSet<>();
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
+        category.getProducts().add(this);
+    }
+
+    public void addCategories(List<Category> categoryList) {
+        this.categories.addAll(categoryList);
+        categoryList.forEach(category -> category.addProduct(this));
+    }
 }

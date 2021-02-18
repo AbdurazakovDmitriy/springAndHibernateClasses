@@ -9,5 +9,5 @@
     "graphics_card": "NVIDIA GeForce RTX 2060"
   },
   "imagePath": "src/main/resources/images/lenovo_legion.jpg",
-  "categories_id": [1]
+  "categoriesIds": [1]
 }

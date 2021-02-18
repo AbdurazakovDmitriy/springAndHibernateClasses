@@ -13,5 +13,5 @@ public class ProductDTO {
     private String name;
     private Map<String, String> characteristics;
     private String imagePath;
-    private List<Long> categories_id = new ArrayList<>();
+    private List<Long> categoriesIds = new ArrayList<>();
 }

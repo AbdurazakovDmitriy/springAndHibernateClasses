@@ -37,5 +37,7 @@ public class CommandLineUserApp implements CommandLineRunner {
 
         List<Product> productList = productParser.getProductList(productsFiles);
         productService.saveAll(productList);
+//        List<Product> productList = productService.findAll();
+//        System.out.println(productList);
     }
 }

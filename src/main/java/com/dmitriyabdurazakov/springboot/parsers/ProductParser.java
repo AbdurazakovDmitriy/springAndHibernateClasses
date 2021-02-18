@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Component
@@ -38,11 +39,11 @@ public class ProductParser {
         List<Product> productList = new ArrayList<>();
         productDTOList.forEach(dto -> {
             Product product = productMapper.mapProductDtoToProduct(dto);
-            List<Category> categories = categoryService.findAllById(dto.getCategories_id());
-            if (categories.size() < dto.getCategories_id().size()) {
-                throw new RuntimeException("Не найдена одна или несколько категорий с ID " + dto.getCategories_id());
+            List<Category> categories = categoryService.findAllById(dto.getCategoriesIds());
+            if (categories.size() < dto.getCategoriesIds().size()) {
+                throw new RuntimeException("Не найдена одна или несколько категорий с ID " + dto.getCategoriesIds());
             }
-            product.setCategories(categories);
+            product.setCategories(new HashSet<>(categories));
             productList.add(product);
         });
         return productList;

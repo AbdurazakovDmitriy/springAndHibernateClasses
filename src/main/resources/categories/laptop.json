@@ -12,8 +12,7 @@
         "ssd": "256ГБ",
         "graphics_card": "NVIDIA GeForce RTX 1060"
       },
-      "imagePath": "src/main/resources/images/predator_helios_300.jpg",
-      "categories_id": [1]
+      "imagePath": "src/main/resources/images/predator_helios_300.jpg"
     }
   ]
 }

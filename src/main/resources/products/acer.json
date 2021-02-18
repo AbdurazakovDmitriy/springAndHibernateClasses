@@ -9,5 +9,5 @@
     "graphics_card": "NVIDIA GeForce RTX 2070"
   },
   "imagePath": "src/main/resources/images/predator_helios_300.jpg",
-  "categories_id": [1]
+  "categoriesIds": [1]
 }

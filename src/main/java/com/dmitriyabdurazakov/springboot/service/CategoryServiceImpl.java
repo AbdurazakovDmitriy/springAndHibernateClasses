@@ -16,7 +16,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> saveAll(List<Category> categories) {
-        categories.forEach(category -> productRepository.saveAll(category.getProducts()));
         return categoryRepository.saveAll(categories);
     }
 
