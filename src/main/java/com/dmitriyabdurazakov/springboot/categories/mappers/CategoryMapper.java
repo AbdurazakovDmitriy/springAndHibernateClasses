@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -18,7 +20,7 @@ public class CategoryMapper {
     private final ProductMapper productMapper;
 
     public Category mapCategoryDtoToCategory(CategoryDTO categoryDTO) {
-        Set<Product> productList = new HashSet<>();
+        List<Product> productList = new ArrayList<>();
         categoryDTO.getProductsDto().forEach(productDto -> productList.add(productMapper.mapProductDtoToProduct(productDto)));
         Category category = modelMapper.map(categoryDTO, Category.class);
         category.setProducts(productList);

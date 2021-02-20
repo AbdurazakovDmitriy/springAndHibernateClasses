@@ -20,7 +20,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -34,7 +34,7 @@ public class Product {
     private byte[] image;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<Category> categories = new HashSet<>();
+    private List<Category> categories = new ArrayList<>();
 
     @OneToMany(
         mappedBy = "product",
@@ -48,8 +48,14 @@ public class Product {
         category.getProducts().add(this);
     }
 
+    public void addCategories(List<Category> categoryList) {
+        this.categories.addAll(categoryList);
+        categoryList.forEach(category -> category.getProducts().add(this));
+    }
+
     public void addOffer(Offer offer) {
         this.offers.add(offer);
         offer.setProduct(this);
     }
+
 }

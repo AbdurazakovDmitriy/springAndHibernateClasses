@@ -1,12 +1,13 @@
 package com.dmitriyabdurazakov.springboot.categories.entity;
 
-import com.dmitriyabdurazakov.springboot.products.entity.Product;
 import com.dmitriyabdurazakov.springboot.categories.enums.CategoryStatus;
+import com.dmitriyabdurazakov.springboot.products.entity.Product;
 import com.dmitriyabdurazakov.springboot.suppliers.entity.Supplier;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -31,11 +32,10 @@ public class Category {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
-        name = "product_category",
-        joinColumns = @JoinColumn(name = "category_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private Set<Product> products = new HashSet<>();
+        name = "category_product",
+        joinColumns = {@JoinColumn(name = "category_id")},
+        inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private List<Product> products = new ArrayList<>();
 
     @OneToMany(
         orphanRemoval = true,
@@ -44,18 +44,10 @@ public class Category {
     )
     private Set<Supplier> suppliers = new HashSet<>();
 
-    public void addProduct(Product product) {
-        this.products.add(product);
-        product.getCategories().add(this);
-    }
-
-    public void addProducts(List<Product> productList) {
-        this.products.addAll(productList);
-        productList.forEach(product -> product.addCategory(this));
-    }
-
     public void addSupplier(Supplier supplier) {
         suppliers.add(supplier);
         supplier.setCategory(this);
     }
+
+
 }

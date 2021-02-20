@@ -3,6 +3,7 @@ package com.dmitriyabdurazakov.springboot;
 
 import com.dmitriyabdurazakov.springboot.categories.entity.Category;
 import com.dmitriyabdurazakov.springboot.categories.parsers.CategoryParser;
+import com.dmitriyabdurazakov.springboot.products.entity.Product;
 import com.dmitriyabdurazakov.springboot.products.parsers.ProductParser;
 import com.dmitriyabdurazakov.springboot.categories.service.CategoryService;
 import com.dmitriyabdurazakov.springboot.products.service.ProductService;
@@ -34,11 +35,10 @@ public class CommandLineUserApp implements CommandLineRunner {
         List<Category> categoryList = categoryParser.getCategories(categoriesFiles);
         categoryService.saveAll(categoryList);
 
-//        List<Product> productList = productParser.getProductList(productsFiles);
-//        productService.saveAll(productList);
-//        List<Product> productList = productService.findAll();
-//        System.out.println(productList);
+        List<Product> productList = productParser.getProductList(productsFiles);
+        productService.saveAll(productList);
 
-
+//        List<Product> products = productService.findAll();
+//        System.out.println(products);
     }
 }
