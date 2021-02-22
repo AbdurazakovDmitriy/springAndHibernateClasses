@@ -1,7 +1,7 @@
 package com.dmitriyabdurazakov.springboot.service.category.mappers;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
-import com.dmitriyabdurazakov.springboot.api.dto.CategoryDTO;
+import com.dmitriyabdurazakov.springboot.service.category.dto.CategoryDTO;
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
 import com.dmitriyabdurazakov.springboot.service.product.mappers.ProductMapper;
 import lombok.RequiredArgsConstructor;

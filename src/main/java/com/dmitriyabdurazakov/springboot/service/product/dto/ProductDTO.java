@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.api.dto;
+package com.dmitriyabdurazakov.springboot.service.product.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package com.dmitriyabdurazakov.springboot.service.product.parsers;
 
-import com.dmitriyabdurazakov.springboot.api.dto.ProductDTO;
+import com.dmitriyabdurazakov.springboot.service.product.dto.ProductDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 

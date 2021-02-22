@@ -3,7 +3,7 @@ package com.dmitriyabdurazakov.springboot.service.product.collectors;
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
 import com.dmitriyabdurazakov.springboot.service.category.CategoryService;
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
-import com.dmitriyabdurazakov.springboot.api.dto.ProductDTO;
+import com.dmitriyabdurazakov.springboot.service.product.dto.ProductDTO;
 import com.dmitriyabdurazakov.springboot.service.product.mappers.ProductMapper;
 import com.dmitriyabdurazakov.springboot.service.product.parsers.ProductDtoParser;
 import lombok.RequiredArgsConstructor;

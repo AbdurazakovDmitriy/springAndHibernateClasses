@@ -1,6 +1,7 @@
-package com.dmitriyabdurazakov.springboot.api.dto;
+package com.dmitriyabdurazakov.springboot.service.category.dto;
 
 import com.dmitriyabdurazakov.springboot.data.enums.CategoryStatus;
+import com.dmitriyabdurazakov.springboot.service.product.dto.ProductDTO;
 import lombok.Getter;
 import lombok.Setter;
 

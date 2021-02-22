@@ -1,7 +1,7 @@
 package com.dmitriyabdurazakov.springboot.service.category.parsers;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
-import com.dmitriyabdurazakov.springboot.api.dto.CategoryDTO;
+import com.dmitriyabdurazakov.springboot.service.category.dto.CategoryDTO;
 import com.dmitriyabdurazakov.springboot.service.category.mappers.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
