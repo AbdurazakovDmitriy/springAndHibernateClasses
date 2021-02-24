@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.service.user.configs;
+package com.dmitriyabdurazakov.springboot.service.config.user;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

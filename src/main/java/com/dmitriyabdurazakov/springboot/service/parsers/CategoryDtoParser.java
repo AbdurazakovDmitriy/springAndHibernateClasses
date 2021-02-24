@@ -1,6 +1,6 @@
-package com.dmitriyabdurazakov.springboot.service.category.parsers;
+package com.dmitriyabdurazakov.springboot.service.parsers;
 
-import com.dmitriyabdurazakov.springboot.service.category.dto.CategoryDTO;
+import com.dmitriyabdurazakov.springboot.service.dto.CategoryDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 

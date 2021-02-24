@@ -7,7 +7,10 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "product")
@@ -39,7 +42,7 @@ public class Product {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
-    private Set<Offer> offers = new HashSet<>();
+    private List<Offer> offers = new ArrayList<>();
 
     public void addCategory(Category category) {
         this.categories.add(category);
@@ -55,5 +58,4 @@ public class Product {
         this.offers.add(offer);
         offer.setProduct(this);
     }
-
 }

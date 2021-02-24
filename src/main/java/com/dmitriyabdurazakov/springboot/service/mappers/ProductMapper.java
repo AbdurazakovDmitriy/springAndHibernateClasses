@@ -1,7 +1,7 @@
-package com.dmitriyabdurazakov.springboot.service.product.mappers;
+package com.dmitriyabdurazakov.springboot.service.mappers;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
-import com.dmitriyabdurazakov.springboot.service.product.dto.ProductDTO;
+import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
 import lombok.SneakyThrows;
 import org.aspectj.util.FileUtil;
 import org.modelmapper.ModelMapper;

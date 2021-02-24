@@ -1,8 +1,8 @@
-package com.dmitriyabdurazakov.springboot.service.category;
+package com.dmitriyabdurazakov.springboot.service.management;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
 import com.dmitriyabdurazakov.springboot.data.repository.CategoryRepository;
-import com.dmitriyabdurazakov.springboot.service.category.parsers.CategoryParser;
+import com.dmitriyabdurazakov.springboot.service.collectors.CategoryCollector;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
-    private final CategoryParser categoryParser;
+    private final CategoryCollector categoryCollector;
 
     @Override
     public List<Category> saveAll(List<Category> categories) {
@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> saveAllCategoriesFromFilePaths(List<String> categoriesFilesPaths) {
-        List<Category> categoryList = categoryParser.getCategories(categoriesFilesPaths);
+        List<Category> categoryList = categoryCollector.getCategories(categoriesFilesPaths);
         return categoryRepository.saveAll(categoryList);
     }
 }

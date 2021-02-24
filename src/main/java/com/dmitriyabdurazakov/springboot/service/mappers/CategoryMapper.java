@@ -1,9 +1,8 @@
-package com.dmitriyabdurazakov.springboot.service.category.mappers;
+package com.dmitriyabdurazakov.springboot.service.mappers;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
-import com.dmitriyabdurazakov.springboot.service.category.dto.CategoryDTO;
+import com.dmitriyabdurazakov.springboot.service.dto.CategoryDTO;
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
-import com.dmitriyabdurazakov.springboot.service.product.mappers.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

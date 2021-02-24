@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "supplier")
@@ -19,7 +21,11 @@ public class Supplier {
     @Column(nullable = false)
     private String alias;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Category category;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "suppliers")
+    private List<Category> categories = new ArrayList<>();
 
+    public void addCategory(Category category) {
+        this.categories.add(category);
+        category.getSuppliers().add(this);
+    }
 }

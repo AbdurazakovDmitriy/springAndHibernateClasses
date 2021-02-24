@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.service.category;
+package com.dmitriyabdurazakov.springboot.service.management;
 
 import com.dmitriyabdurazakov.springboot.data.entity.Category;
 

@@ -21,6 +21,7 @@ public class Offer {
     private int price;
 
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private OfferStatus status;
 
     @Column(nullable = false)

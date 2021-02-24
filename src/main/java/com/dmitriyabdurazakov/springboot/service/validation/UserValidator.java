@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.service.user.validation;
+package com.dmitriyabdurazakov.springboot.service.validation;
 
 import com.dmitriyabdurazakov.springboot.data.entity.User;
 import lombok.RequiredArgsConstructor;

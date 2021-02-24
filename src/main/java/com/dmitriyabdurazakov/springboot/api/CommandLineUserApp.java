@@ -1,8 +1,8 @@
 package com.dmitriyabdurazakov.springboot.api;
 
 
-import com.dmitriyabdurazakov.springboot.service.category.CategoryService;
-import com.dmitriyabdurazakov.springboot.service.product.ProductService;
+import com.dmitriyabdurazakov.springboot.service.management.CategoryService;
+import com.dmitriyabdurazakov.springboot.service.management.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;

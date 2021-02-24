@@ -35,15 +35,11 @@ public class Category {
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(
-        orphanRemoval = true,
-        cascade = CascadeType.ALL,
-        mappedBy = "category"
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+        name = "category_supplier",
+        joinColumns = {@JoinColumn(name = "category_id")},
+        inverseJoinColumns = {@JoinColumn(name = "supplier_id")}
     )
     private Set<Supplier> suppliers = new HashSet<>();
-
-    public void addSupplier(Supplier supplier) {
-        suppliers.add(supplier);
-        supplier.setCategory(this);
-    }
 }
