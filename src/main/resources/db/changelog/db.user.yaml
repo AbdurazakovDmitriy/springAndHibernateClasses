@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-user
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: user
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: users_pkey
+              - column:
+                  name: email
+                  type: VARCHAR
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: surname
+                  type: VARCHAR

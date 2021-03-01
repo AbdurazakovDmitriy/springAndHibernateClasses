@@ -6,9 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Table(name = "category")
 @Entity
@@ -35,11 +33,6 @@ public class Category {
         inverseJoinColumns = {@JoinColumn(name = "product_id")})
     private List<Product> products = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(
-        name = "category_supplier",
-        joinColumns = {@JoinColumn(name = "category_id")},
-        inverseJoinColumns = {@JoinColumn(name = "supplier_id")}
-    )
-    private Set<Supplier> suppliers = new HashSet<>();
+    @ElementCollection
+    private List<Supplier> suppliers = new ArrayList<>();
 }

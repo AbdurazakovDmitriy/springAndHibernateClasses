@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-offer
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: offer
+      changes:
+        - createTable:
+            tableName: offer
+            columns:
+              - column:
+                  name: id
+                  autoIncrement: true
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: offer_pkey
+              - column:
+                  name: price
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+
+  - changeSet:
+      author: Dmitriy
+      id: 1614356736095-12
+      changes:
+        addForeignKeyConstraint:
+          baseColumnNames: product_id
+          baseTableName: offer
+          constraintName: fk3cow2cmfxb0nrt43hxm7yu1q3
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: product

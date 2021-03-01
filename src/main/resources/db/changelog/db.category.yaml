@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-category
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: category
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: category_pkey
+                    updatable: false
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR
+            tableName: category

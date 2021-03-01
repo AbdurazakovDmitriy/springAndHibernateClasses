@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-category_product
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: category_product
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: category_id
+                  constraints:
+                    nullable: false
+                  type: BIGINT
+              - column:
+                  name: product_id
+                  constraints:
+                    nullable: false
+                  type: BIGINT
+            tableName: category_product
+
+  - changeSet:
+      author: Dmitriy
+      id: 1614356736095-14
+      changes:
+        addForeignKeyConstraint:
+          baseColumnNames: category_id
+          baseTableName: category_product
+          constraintName: fkfr6rjc04htbtc3xas2b9xmq7r
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: category
+
+  - changeSet:
+      author: Dmitriy
+      id: 1614356736095-15
+      changes:
+        addForeignKeyConstraint:
+          baseColumnNames: product_id
+          baseTableName: category_product
+          constraintName: fkssroqj2vyiaujfleklq1ifigj
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: product

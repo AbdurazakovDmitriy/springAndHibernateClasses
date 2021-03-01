@@ -37,13 +37,6 @@ public class Product {
     @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Category> categories = new ArrayList<>();
 
-    @OneToMany(
-        mappedBy = "product",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<Offer> offers = new ArrayList<>();
-
     public void addCategory(Category category) {
         this.categories.add(category);
         category.getProducts().add(this);
@@ -52,10 +45,5 @@ public class Product {
     public void addCategories(List<Category> categoryList) {
         this.categories.addAll(categoryList);
         categoryList.forEach(category -> category.getProducts().add(this));
-    }
-
-    public void addOffer(Offer offer) {
-        this.offers.add(offer);
-        offer.setProduct(this);
     }
 }

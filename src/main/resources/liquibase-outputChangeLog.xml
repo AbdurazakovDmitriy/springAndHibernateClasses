@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Дмитрий (generated)" id="1614356736095-1">
+        <createSequence sequenceName="category_id_seq"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-2">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-3">
+        <createSequence sequenceName="offer_id_seq"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-4">
+        <createSequence sequenceName="product_id_seq"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-5">
+        <createSequence sequenceName="users_id_seq"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-6">
+        <createTable tableName="category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="category_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(2147483647)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(2147483647)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-7">
+        <createTable tableName="category_product">
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-8">
+        <createTable tableName="category_suppliers">
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alias" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-9">
+        <createTable tableName="offer">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="offer_pkey"/>
+            </column>
+            <column name="price" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-10">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(2147483647)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="characteristics" type="JSONB(2147483647)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-11">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(30)"/>
+            <column name="surname" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-12">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="offer" constraintName="fk3cow2cmfxb0nrt43hxm7yu1q3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-13">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="category_suppliers" constraintName="fkagge145n1skf7h0hm959mfxg7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-14">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="category_product" constraintName="fkfr6rjc04htbtc3xas2b9xmq7r" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="Дмитрий (generated)" id="1614356736095-15">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="category_product" constraintName="fkssroqj2vyiaujfleklq1ifigj" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+</databaseChangeLog>

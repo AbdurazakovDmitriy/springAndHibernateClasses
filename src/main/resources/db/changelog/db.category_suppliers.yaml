@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-category_suppliers
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: category_suppliers
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: category_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: alias
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+            tableName: category_suppliers
+
+  - changeSet:
+      author: Dmitriy
+      id: 1614356736095-13
+      changes:
+        addForeignKeyConstraint:
+          baseColumnNames: category_id
+          baseTableName: category_suppliers
+          constraintName: fkagge145n1skf7h0hm959mfxg7
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: category

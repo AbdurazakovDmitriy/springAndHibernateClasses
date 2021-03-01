@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-product
+      author: Dmitriy
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: product
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: product_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR
+              - column:
+                  constraints:
+                    nullable: false
+                    columnDefinition: JSONB
+                  name: characteristics
+                  type: JSONB
+              - column:
+                  constraints:
+                    nullable: false
+                  name: image
+                  type: BYTEA
+            tableName: product
