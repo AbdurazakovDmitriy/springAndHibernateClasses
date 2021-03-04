@@ -1,13 +1,13 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/db.category.yaml
+      file: db/changelog/1.db.category.yaml
   - include:
-      file: db/changelog/db.product.yaml
+      file: db/changelog/2.db.product.yaml
   - include:
-      file: db/changelog/db.category_product.yaml
+      file: db/changelog/3.db.category_product.yaml
   - include:
-      file: db/changelog/db.category_suppliers.yaml
+      file: db/changelog/4.db.category_suppliers.yaml
   - include:
-      file: db/changelog/db.offer.yaml
+      file: db/changelog/5.db.offer.yaml
   - include:
-      file: db/changelog/db.user.yaml
+      file: db/changelog/6.db.user.yaml

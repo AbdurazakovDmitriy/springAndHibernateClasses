@@ -36,6 +36,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
+    public Product saveProduct(Product product, List<Long> categoriesIds) {
+        List<Category> categories = categoryRepository.findAllById(categoriesIds);
+        product.addCategories(categories);
+        return productRepository.save(product);
+    }
+
+    @Override
+    @Transactional
     public List<Product> saveAllProductsFromFilePaths(List<String> productsFilesPaths) {
         List<ProductDTO> productDTOList = productDtoParser.getProductDTOList(productsFilesPaths);
         Set<Category> allCategories = new HashSet<>();
