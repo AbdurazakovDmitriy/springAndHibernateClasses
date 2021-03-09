@@ -1,6 +1,7 @@
 package com.dmitriyabdurazakov.springboot.data.entity;
 
 import com.dmitriyabdurazakov.springboot.data.enums.CategoryStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,7 @@ public class Category {
     @Column(nullable = false)
     private CategoryStatus status;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
         name = "category_product",

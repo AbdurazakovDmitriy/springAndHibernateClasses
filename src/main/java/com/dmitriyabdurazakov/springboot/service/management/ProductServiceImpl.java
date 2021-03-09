@@ -9,6 +9,7 @@ import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
 import com.dmitriyabdurazakov.springboot.service.mappers.ProductMapper;
 import com.dmitriyabdurazakov.springboot.service.parsers.ProductDtoParser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,6 +28,16 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
+    public List<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable).getContent();
+    }
+
+    @Override
+    public Product findById(String id) {
+        return productRepository.findById(Long.parseLong(id)).orElse(null);
+    }
+
+    @Override
     @Transactional
     public Product saveProduct(Product product) {
         Product prod = productRepository.save(product);
@@ -40,6 +51,11 @@ public class ProductServiceImpl implements ProductService {
         List<Category> categories = categoryRepository.findAllById(categoriesIds);
         product.addCategories(categories);
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
     }
 
     @Override

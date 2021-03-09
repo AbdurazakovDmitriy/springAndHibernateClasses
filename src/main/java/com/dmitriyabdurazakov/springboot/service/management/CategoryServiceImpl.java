@@ -19,4 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categoryList = categoryCollector.getCategories(categoriesFilesPaths);
         return categoryRepository.saveAll(categoryList);
     }
+
+    @Override
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
+    }
 }
