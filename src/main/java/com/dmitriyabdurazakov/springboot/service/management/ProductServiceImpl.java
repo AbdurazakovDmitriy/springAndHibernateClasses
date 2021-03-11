@@ -9,6 +9,9 @@ import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
 import com.dmitriyabdurazakov.springboot.service.mappers.ProductMapper;
 import com.dmitriyabdurazakov.springboot.service.parsers.ProductDtoParser;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +29,28 @@ public class ProductServiceImpl implements ProductService {
     private final MessageBroker messageBroker;
     private final ProductDtoParser productDtoParser;
     private final ProductMapper productMapper;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable).getContent();
+    public Page<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override
     public Product findById(String id) {
         return productRepository.findById(Long.parseLong(id)).orElse(null);
+    }
+
+    @SneakyThrows
+    @Override
+    @Transactional
+    public Product saveProduct(ProductDTO productDTO) {
+        Product product = modelMapper.map(productDTO, Product.class);
+        List<Category> categories = categoryRepository.findAllById(productDTO.getCategoriesIds());
+        product.getCategories().clear();
+        product.addCategories(categories);
+        product.setImage(productDTO.getImage().getBytes());
+        return product;
     }
 
     @Override
@@ -43,14 +59,6 @@ public class ProductServiceImpl implements ProductService {
         Product prod = productRepository.save(product);
         messageBroker.send("Продукт сохранен с id: " + prod.getId());
         return prod;
-    }
-
-    @Override
-    @Transactional
-    public Product saveProduct(Product product, List<Long> categoriesIds) {
-        List<Category> categories = categoryRepository.findAllById(categoriesIds);
-        product.addCategories(categories);
-        return productRepository.save(product);
     }
 
     @Override
