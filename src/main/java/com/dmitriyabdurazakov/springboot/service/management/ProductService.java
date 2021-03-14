@@ -21,4 +21,6 @@ public interface ProductService {
     Product findById(String id);
 
     Product saveProduct(ProductDTO productDTO);
+
+    List<Product> findAllByNameContainingAndId(String name, Long id, Long categoryId);
 }

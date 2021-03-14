@@ -54,6 +54,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findAllByNameContainingAndId(String name, Long id, Long categoryId) {
+        return productRepository.findAllByNameContainingAndIdAndCategoryId(name, id, categoryId);
+    }
+
+    @Override
     @Transactional
     public Product saveProduct(Product product) {
         Product prod = productRepository.save(product);

@@ -9,8 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,15 +36,18 @@ public class ProductController {
         return productService.saveProduct(productDTO);
     }
 
-    @GetMapping(path = "/products")
-    public Page<Product> getSortedProducts(Pageable pageable) {
-        return productService.findAll(pageable);
-    }
-
 //    @GetMapping(path = "/products")
-//    public List<Product> getProductByName(@RequestParam("name") String name) {
-//        return productService.findAllByName(name);
+//    public Page<Product> getSortedProducts(Pageable pageable) {
+//        return productService.findAll(pageable);
 //    }
+
+    @GetMapping(path = "/products")
+    public List<Product> getProductsByNameContainingAndByIdAndByCategories(
+        @RequestParam(required = false, name = "name") String name,
+        @RequestParam(required = false, name = "id") Long id,
+        @RequestParam(required = false, name = "categoryId") Long categoryId) {
+        return productService.findAllByNameContainingAndId(name, id, categoryId);
+    }
 
     @GetMapping(path = "/products/{id}")
     public Product getProductById(@PathVariable String id) {
