@@ -26,7 +26,7 @@ public class CommandLineUserApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//        categoryService.saveAllCategoriesFromFilePaths(categoriesFiles);
-//        productService.saveAllProductsFromFilePaths(productsFiles);
+        categoryService.saveAllCategoriesFromFilePaths(categoriesFiles);
+        productService.saveAllProductsFromFilePaths(productsFiles);
     }
 }

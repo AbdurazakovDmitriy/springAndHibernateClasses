@@ -13,6 +13,7 @@ import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,10 +32,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
     private final ModelMapper modelMapper = new ModelMapper();
 
-    @Override
-    public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
-    }
 
     @Override
     public Product findById(String id) {
@@ -54,22 +51,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAllByNameContainingAndId(String name, Long id, Long categoryId) {
-        return productRepository.findAllByNameContainingAndIdAndCategoryId(name, id, categoryId);
+    public Page<Product> findAllByFilter(Specification<Product> specification, Pageable pageable) {
+        return productRepository.findAll(specification, pageable);
     }
 
-    @Override
-    @Transactional
-    public Product saveProduct(Product product) {
-        Product prod = productRepository.save(product);
-        messageBroker.send("Продукт сохранен с id: " + prod.getId());
-        return prod;
-    }
-
-    @Override
-    public List<Product> findAllByName(String name) {
-        return productRepository.findAllByName(name);
-    }
 
     @Override
     @Transactional

@@ -5,22 +5,17 @@ import com.dmitriyabdurazakov.springboot.data.entity.Product;
 import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
 public interface ProductService {
 
-    Product saveProduct(Product product);
-
-    List<Product> findAllByName(String name);
-
     List<Product> saveAllProductsFromFilePaths(List<String> productsFilesPaths);
-
-    Page<Product> findAll(Pageable pageable);
 
     Product findById(String id);
 
     Product saveProduct(ProductDTO productDTO);
 
-    List<Product> findAllByNameContainingAndId(String name, Long id, Long categoryId);
+    Page<Product> findAllByFilter(Specification<Product> specification, Pageable pageable);
 }

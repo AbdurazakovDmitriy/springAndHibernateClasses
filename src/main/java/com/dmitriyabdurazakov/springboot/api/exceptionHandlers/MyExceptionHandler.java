@@ -1,4 +1,4 @@
-package com.dmitriyabdurazakov.springboot.api.exceptionHendlers;
+package com.dmitriyabdurazakov.springboot.api.exceptionHandlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
