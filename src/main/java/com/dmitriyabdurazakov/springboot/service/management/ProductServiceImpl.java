@@ -55,7 +55,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(specification, pageable);
     }
 
-
     @Override
     @Transactional
     public List<Product> saveAllProductsFromFilePaths(List<String> productsFilesPaths) {

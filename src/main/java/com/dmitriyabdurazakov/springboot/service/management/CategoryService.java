@@ -9,4 +9,8 @@ public interface CategoryService {
     List<Category> saveAllCategoriesFromFilePaths(List<String> categoriesFilesPaths);
 
     Category saveCategory(Category category);
+
+    Category findCategoryById(Long id);
+
+    List<Category> getCategoriesByProductId(Long productId);
 }

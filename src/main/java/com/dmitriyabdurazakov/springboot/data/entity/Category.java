@@ -4,6 +4,7 @@ import com.dmitriyabdurazakov.springboot.data.enums.CategoryStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Category {
+public class Category extends RepresentationModel<Category> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

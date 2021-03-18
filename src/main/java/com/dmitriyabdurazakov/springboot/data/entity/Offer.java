@@ -3,6 +3,7 @@ package com.dmitriyabdurazakov.springboot.data.entity;
 import com.dmitriyabdurazakov.springboot.data.enums.OfferStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "offer")
-public class Offer {
+public class Offer extends RepresentationModel<Offer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -39,11 +41,19 @@ public class ProductController {
 
     @GetMapping(path = "/products")
     public Page<Product> getProductsByFilter(@ModelAttribute ProductRequestDto productRequestDto, Pageable pageable) {
-        return productService.findAllByFilter(
-                ProductSpecification.productNameLike(productRequestDto.getName())
-                        .and(ProductSpecification.productIdEquals(productRequestDto.getId())
-                                .and(ProductSpecification.productCategoriesHaveId(productRequestDto.getCategoryId()))), pageable);
+        Page<Product> products = productService.findAllByFilter(
+            ProductSpecification.productNameLike(productRequestDto.getName())
+                .and(ProductSpecification.productIdEquals(productRequestDto.getId())
+                    .and(ProductSpecification.productCategoriesHaveId(productRequestDto.getCategoryId()))), pageable);
+        products.get().forEach(product -> {
+            Link selfLink = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder.methodOn(CategoryController.class).getCategoriesByProductId(product.getId()))
+                .withRel("categories");
+            product.add(selfLink);
+        });
+        return products;
     }
+
 
     @GetMapping(path = "/products/{id}")
     public Product getProductById(@PathVariable String id) {
@@ -53,6 +63,6 @@ public class ProductController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Map.class,
-                new StringToMapEditor());
+            new StringToMapEditor());
     }
 }
