@@ -8,6 +8,11 @@ import javax.persistence.criteria.*;
 
 public class ProductSpecification {
 
+
+    public static Specification<Product> filterSpecification(String name, Long id, Long categoryId) {
+        return productNameLike(name).and(productIdEquals(id)).and(productCategoriesHaveId(categoryId));
+    }
+
     public static Specification<Product> productNameLike(String name) {
         return (Specification<Product>) (root, query, cb) -> name == null ? cb.conjunction() : cb.like(root.get("name"), String.format("%%%s%%", name));
     }
@@ -35,5 +40,3 @@ public class ProductSpecification {
         };
     }
 }
-
-// SELECT * FROM product p where p.name='acer' and p.id=1 and p.id in (select cp.product_id from category_product cp where cp.category_id=1)

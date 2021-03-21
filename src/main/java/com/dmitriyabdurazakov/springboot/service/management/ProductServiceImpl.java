@@ -4,8 +4,10 @@ import com.dmitriyabdurazakov.springboot.data.entity.Category;
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
 import com.dmitriyabdurazakov.springboot.data.repository.CategoryRepository;
 import com.dmitriyabdurazakov.springboot.data.repository.ProductRepository;
+import com.dmitriyabdurazakov.springboot.data.specifications.ProductSpecification;
 import com.dmitriyabdurazakov.springboot.service.broker.MessageBroker;
 import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
+import com.dmitriyabdurazakov.springboot.service.dto.ProductDtoFilter;
 import com.dmitriyabdurazakov.springboot.service.mappers.ProductMapper;
 import com.dmitriyabdurazakov.springboot.service.parsers.ProductDtoParser;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,6 @@ import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -51,8 +52,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findAllByFilter(Specification<Product> specification, Pageable pageable) {
-        return productRepository.findAll(specification, pageable);
+    public Page<Product> findAllByFilter(ProductDtoFilter productDtoFilter, Pageable pageable) {
+        return productRepository.findAll(
+                ProductSpecification.filterSpecification(
+                        productDtoFilter.getName(),
+                        productDtoFilter.getId(),
+                        productDtoFilter.getCategoryId()),
+                pageable);
     }
 
     @Override

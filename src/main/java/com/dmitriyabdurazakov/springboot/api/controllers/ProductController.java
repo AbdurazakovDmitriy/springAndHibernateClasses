@@ -2,14 +2,15 @@ package com.dmitriyabdurazakov.springboot.api.controllers;
 
 import com.dmitriyabdurazakov.springboot.api.dto.ProductRequestDto;
 import com.dmitriyabdurazakov.springboot.data.entity.Product;
-import com.dmitriyabdurazakov.springboot.data.specifications.ProductSpecification;
 import com.dmitriyabdurazakov.springboot.service.config.customEditors.StringToMapEditor;
 import com.dmitriyabdurazakov.springboot.service.dto.ProductDTO;
+import com.dmitriyabdurazakov.springboot.service.dto.ProductDtoFilter;
 import com.dmitriyabdurazakov.springboot.service.management.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.Link;
@@ -30,6 +31,7 @@ import java.util.Map;
 @Validated
 public class ProductController {
     private final ProductService productService;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @SneakyThrows
     @PostMapping(path = "/products", consumes = MediaType.ALL_VALUE)
@@ -41,14 +43,11 @@ public class ProductController {
 
     @GetMapping(path = "/products")
     public Page<Product> getProductsByFilter(@ModelAttribute ProductRequestDto productRequestDto, Pageable pageable) {
-        Page<Product> products = productService.findAllByFilter(
-            ProductSpecification.productNameLike(productRequestDto.getName())
-                .and(ProductSpecification.productIdEquals(productRequestDto.getId())
-                    .and(ProductSpecification.productCategoriesHaveId(productRequestDto.getCategoryId()))), pageable);
+        Page<Product> products = productService.findAllByFilter(modelMapper.map(productRequestDto, ProductDtoFilter.class), pageable);
         products.get().forEach(product -> {
             Link selfLink = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder.methodOn(CategoryController.class).getCategoriesByProductId(product.getId()))
-                .withRel("categories");
+                    .linkTo(WebMvcLinkBuilder.methodOn(CategoryController.class).getCategoriesByProductId(product.getId()))
+                    .withRel("categories");
             product.add(selfLink);
         });
         return products;
@@ -63,6 +62,6 @@ public class ProductController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Map.class,
-            new StringToMapEditor());
+                new StringToMapEditor());
     }
 }
